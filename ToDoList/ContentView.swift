@@ -1,34 +1,57 @@
+//
+//  ContentView.swift
+//  ToDoList
+//
+//  Created by Scholar on 8/8/25.
+//
+
 import SwiftUI
+import SwiftData
+
 struct ContentView: View {
-  @State private var showNewTask = false
-   
-  var body: some View {
-    VStack {
-      HStack{
-        Text("To-Do List")
-          .font(.system(size: 40))
-          .fontWeight(.bold)
-        Spacer()//push left or right
-        Button{
-          withAnimation{
-            showNewTask = true
-          }
-        } label: {
-          Text("+")
-            .font(.title)
-            .fontWeight(.bold)
-        }
-         
-      }//end of the HStack
-      Spacer()//push up
-       
-      if showNewTask {
-        NewToDoView()
-      }
-    }//end of the VStack
-    .padding()
-  }
-}
+    @State private var ShowNewTask = false
+    @Query var toDos: [ToDoItem]
+    
+    var body: some View {
+        VStack {
+            HStack{
+                Text("To Do List")
+              
+                    .font(.system(size: 45))
+                    .bold()
+                    .fontWeight(.black)
+                Spacer()
+                Button {
+                    withAnimation{
+                        ShowNewTask = true
+                    }
+                } label: {
+                    Text("+")
+                        .font(.title)
+                        .fontWeight(.bold)
+                }
+                
+            }//hstack ending
+            .padding()
+            Spacer()
+            List{
+                ForEach (toDos) { toDoItem in
+                    //Text(toDoItem.title)
+                    
+                    if toDoItem.isImportant {
+                        Text("‼️" +toDoItem.title)
+                    }else{
+                        //Text(toDoItem.title)
+                    }
+                }//closoing for each
+            }//clsing list
+        }//vstack ending
+        if ShowNewTask{
+            NewToDoView(showNewTask: $ShowNewTask, toDoItem: ToDoItem(title: "", isImportant: false))
+        }//end of if
+    }//end of body
+}//end of struct
+
 #Preview {
-  ContentView()
+    ContentView()
 }
