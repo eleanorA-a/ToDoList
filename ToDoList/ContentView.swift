@@ -1,41 +1,34 @@
-//
-//  ContentView.swift
-//  ToDoList
-//
-//  Created by Scholar on 8/8/25.
-//
-
 import SwiftUI
-
 struct ContentView: View {
-    @State private var ShowNewTask = false
-    var body: some View {
-        VStack {
-            HStack{
-                Text("To Do List")
-              
-                    .font(.system(size: 45))
-                    .bold()
-                    .fontWeight(.black)
-                Spacer()
-                Button {
-            ShowNewTask = true
-                } label: {
-                    Text("+")
-                        .font(.title)
-                        .fontWeight(.bold)
-                }
-                    
-            }//hstack ending
-            .padding()
-            Spacer()
-        }//vstack ending
-        if ShowNewTask{
-           NewToDoView()
-        }//end of if
-    }//end of body
-}//end of struct
-
+  @State private var showNewTask = false
+   
+  var body: some View {
+    VStack {
+      HStack{
+        Text("To-Do List")
+          .font(.system(size: 40))
+          .fontWeight(.bold)
+        Spacer()//push left or right
+        Button{
+          withAnimation{
+            showNewTask = true
+          }
+        } label: {
+          Text("+")
+            .font(.title)
+            .fontWeight(.bold)
+        }
+         
+      }//end of the HStack
+      Spacer()//push up
+       
+      if showNewTask {
+        NewToDoView()
+      }
+    }//end of the VStack
+    .padding()
+  }
+}
 #Preview {
-    ContentView()
+  ContentView()
 }
