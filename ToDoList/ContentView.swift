@@ -39,9 +39,9 @@ struct ContentView: View {
                     //Text(toDoItem.title)
                     
                     if toDoItem.isImportant {
-                        Text("‼️" +toDoItem.title)
+                        Text("‼️" + toDoItem.title)
                     }else{
-                        //Text(toDoItem.title)
+                    Text(toDoItem.title)
                     }
                 }//closoing for each
             }//clsing list
