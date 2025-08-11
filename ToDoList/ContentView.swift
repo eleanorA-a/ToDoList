@@ -54,9 +54,9 @@ struct ContentView: View {
         }//end of if
     }//end of body
     func deleteToDo(at offsets: IndexSet) {
-        for offsets in offsets{
-            let toDoItemToDelete = toDos[offsets]
-            modelContext.delete(toDoItemToDelete)
+        for offset in offsets{
+            let toDoItemToDelete = toDos[offset]
+            modelContext.delete(toDoItem)
         }
     }
 }//end of struct
