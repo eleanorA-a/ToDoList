@@ -45,6 +45,7 @@ struct ContentView: View {
                     Text(toDoItem.title)
                     }
                 }//closoing for each
+                .onDelete(perform: deleteToDo)
             }//clsing list
             .listStyle(.plain)
         }//vstack ending
@@ -52,7 +53,7 @@ struct ContentView: View {
             NewToDoView(showNewTask: $ShowNewTask, toDoItem: ToDoItem(title: "", isImportant: false))
         }//end of if
     }//end of body
-    func deleteToDo(at offsets: Indexset) {
+    func deleteToDo(at offsets: IndexSet) {
         for offsets in offsets{
             let toDoItemToDelete = toDos[offsets]
             modelContext.delete(toDoItemToDelete)
